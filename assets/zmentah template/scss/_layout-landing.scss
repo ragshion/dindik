@@ -1,0 +1,200 @@
+.layout-landing {
+  h1, .h1 {
+    line-height: 1.167em;
+  }
+  h1,
+  .h1 {
+    @include media-breakpoint-down(md) {
+      & + .h-decor {
+        position: relative;
+        top: -10px;
+      }
+    }
+    @include media-breakpoint-down(sm) {
+      & + .h-decor {
+        top: -10px;
+      }
+    }
+    @include media-breakpoint-down(xs) {
+      & + .h-decor {
+        position: relative;
+        top: -7px;
+      }
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    h1, .h1 {
+      font-size: 26px;
+    }
+  }
+  .title-wrap {
+    & + * {
+      @include media-breakpoint-down(md) {
+        margin-top: 5px;
+      }
+      @include media-breakpoint-down(sm) {
+        margin-top: 5px;
+      }
+    }
+  }
+  .header-topline {
+    min-height: 38px;
+  }
+  .header-info + *, .header-phone + * {
+    margin-left: 35px;
+    padding-left: 0;
+  }
+  .header-info + *:before, .header-phone + *:before,
+  .header-social a:before, .header-social a:last-child:after {
+    display: none;
+  }
+  .header-topline [class*='icon-'] {
+    color: #fff;
+  }
+  .header-social [class*='icon-'] {
+    height: 38px;
+    line-height: 34px;
+    padding: 0 8px;
+  }
+  #mainSlider .slide-txt1 {
+    text-transform: none;
+  }
+  #mainSlider .slick-dots li button {
+    background: transparent;
+    border: 2px solid #fff;
+  }
+  #mainSlider .slick-dots li.slick-active button {
+    background-color: #fff;
+  }
+  .btn, &:not(.touch) .btn:focus {
+    font-weight: 500;
+    color: #fff;
+    background: theme-color("primary");
+    border: 1px solid transparent;
+    box-shadow: none !important;
+    @include media-breakpoint-up(lg) {
+      &:not(.btn-xs):not(.btn-sm):not(.btn-lg) {
+        font-size: 14px;
+        line-height: 22px;
+        padding: 15px 30px;
+      }
+    }
+    .icon-right-arrow {
+      font-size: 10px;
+    }
+    &:hover {
+      background: lighten(theme-color("primary"), 10%);
+      color: #fff;
+      border: 1px solid transparent;
+    }
+  }
+  .btn-gradient, &:not(.touch) .btn-gradient:focus {
+    @include gradient-x($start-color: theme-color("primary"), $end-color: lighten(theme-color("primary"), 15%), $start-percent: 0%, $end-percent: 100%);
+    color: #fff;
+    box-shadow: none;
+    border: 0 !important;
+    [class*='icon'] {
+      color: #fff;
+      box-shadow: none
+    }
+  }
+  &:not(.touch) .btn-gradient:hover {
+    @include gradient-x($start-color: lighten(theme-color("primary"), 15%), $end-color: theme-color("primary"), $start-percent: 0%, $end-percent: 100%);
+    color: #fff;
+    border: 0 !important;
+    [class*='icon'] {
+      color: #fff;
+    }
+  }
+
+  .btn-fill, &:not(.touch) .btn-fill:focus,
+  .btn-hover-fill, &:not(.touch) .btn-hover-fill:focus {
+    color: #fff;
+    background: theme-color("primary");
+    border: 1px solid transparent;
+  }
+  &:not(.touch) .btn-fill, &:not(.touch) .btn-fill:focus,
+  &:not(.touch) .btn-hover-fill, &:not(.touch) .btn-hover-fill:focus {
+    &:hover {
+      background: lighten(theme-color("primary"), 10%);
+      color: #fff;
+      border: 1px solid transparent;
+      [class*='icon'] {
+        color: #fff;
+      }
+    }
+  }
+  .btn-white, .btn-white:focus, &:not(.touch) .btn-white:focus {
+    border-color: #fff;
+    color: theme-color("primary");
+    background-color: #ffffff;
+    @include media-breakpoint-down(sm) {
+      box-shadow: inset 0 0 0 1px #fff;
+    }
+  }
+
+  &:not(.touch) .btn-white:hover, .btn-white:hover {
+    color: #fff;
+    background-color: theme-color("primary");
+    [class*='icon'] {
+      color: #fff;
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    .icn-text-alt > * + * {
+      margin-left: 24px;
+    }
+    .icn-text-alt .icn-text-alt-icn {
+      padding-top: 13px;
+      padding-left: 3px;
+      padding-right: 12px;
+    }
+    .icn-text-alt .icn-text-alt-icn [class*='icon'] {
+      font-size: 48px;
+    }
+    .icn-text-alt .icn-text-alt-title + * {
+      margin-top: 6px;
+    }
+  }
+  .slick-prev:not(:hover), .slick-next:not(:hover) {
+    border-color: #fafbfa;
+    background-color: #fafbfa;
+  }
+  ul.marker-list-md li:before {
+    left: 3px;
+  }
+  ul.marker-list-md li {
+    padding-left: 30px;
+  }
+  .btn-link {
+    font-size: 14px;
+  }
+  @include media-breakpoint-up(lg) {
+    .text-image-block .text-col {
+      padding: 115px 15px 90px;
+      max-width: 570px;
+    }
+  }
+  .footer-text p {
+    font-size: 14px;
+    line-height: 24px;
+  }
+  footer h3 {
+    @include media-breakpoint-up(md) {
+      font-size: 24px;
+    }
+  }
+  .footer-post-text, .footer-post-text p {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .footer-post-title a {
+    font-size: 15px;
+    line-height: 22px;
+  }
+  @include media-breakpoint-down(sm) {
+    .js-icn-text-alt-carousel .slick-dots {
+      margin: 15px 0 25px;
+    }
+  }
+}

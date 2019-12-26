@@ -1,0 +1,227 @@
+.service-card-style3 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 338px;
+  max-width: 370px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 23px 28px 30px;
+  border: 3px solid transparent;
+  background-color: #ffffff;
+  @include transition(.2s);
+  @include media-breakpoint-down(sm) {
+    padding: 25px 20px 25px;
+  }
+
+  @include media-breakpoint-down(xs) {
+    max-width: 270px;
+    min-height: 230px;
+    padding: 18px 15px;
+  }
+
+  @media (max-width: 375px){
+    max-width: 185px;
+  }
+
+  & > * {
+    margin-bottom: 0;
+  }
+
+  & > *:not(:first-child) {
+    margin-top: 18px;
+    @include media-breakpoint-down(xs) {
+      margin-top: 15px;
+    }
+  }
+
+  .service-card-icon {
+    font-size: 60px;
+    line-height: 1em;
+    color: #cfcfcf;
+    @include media-breakpoint-down(xs) {
+      font-size: 42px;
+    }
+  }
+
+  .service-card-name {
+    font-size: 20px;
+    line-height: 1.4em;
+    @include media-breakpoint-down(xl) {
+      font-size: 18px;
+      line-height: 1.2em;
+    }
+    @include media-breakpoint-down(xs) {
+      font-size: 14px;
+    }
+  }
+
+  .service-card-name a:hover {
+    text-decoration: none;
+    color: theme-color("primary");
+  }
+
+  & > ul.marker-list-md:not(:first-child) {
+    margin-top: 15px;
+  }
+
+  ul.marker-list-md li {
+    font-size: 16px;
+    @include media-breakpoint-down(md) {
+      font-size: 15px;
+      line-height: 20px;
+    }
+  }
+
+  ul.marker-list-md li:not(:last-child) {
+    margin-bottom: 16px;
+    @include media-breakpoint-down(md) {
+      margin-bottom: 8px;
+    }
+  }
+
+  .btn-link {
+    margin-top: auto;
+    @include media-breakpoint-down(sm) {
+      font-size: 12px !important;
+      .btn-link [class*='icon'] {
+        padding-left: 7px !important;
+        font-size: 10px !important;
+      }
+    }
+  }
+
+  &:hover, &.active {
+    @include media-breakpoint-up(sm) {
+      border: 3px solid theme-color("primary");
+      box-shadow: 0 8px 22px rgba(0, 0, 0, .07);
+      .btn-link {
+        color: $headings-color;
+
+        &:hover {
+          color: theme-color("primary");
+        }
+      }
+
+      .service-card-name {
+        color: theme-color("primary");
+      }
+    }
+  }
+}
+
+.service-info-num {
+  overflow: hidden;
+  margin-bottom: 28px;
+  font-size: 50px;
+  line-height: 1em;
+  font-weight: bold;
+  color: theme-color("primary");
+  @include media-breakpoint-down(md) {
+    margin-bottom: 20px;
+  }
+  @include media-breakpoint-down(xs) {
+    font-size: 38px;
+  }
+  @include media-breakpoint-up(md) {
+    span {
+      display: inline-block;
+      position: relative;
+      transform: translateY(100%);
+      opacity: 0;
+      transition: .3s;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .service-info p {
+    transform: translateY(50px);
+    opacity: 0;
+    transition: .3s;
+  }
+
+  .slick-active.service-info p {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .slick-active .service-info-num {
+    span {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+.service-info-carousel-wrap {
+  position: relative;
+  @include media-breakpoint-up(lg) {
+    padding-left: 30px;
+  }
+  @include media-breakpoint-down(sm) {
+    .slick-slider {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.service-info-carousel {
+  position: static;
+  @include media-breakpoint-up(lg) {
+    margin-top: -10px;
+    .slick-list {
+      overflow: visible;
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    text-align: center;
+  }
+  .slick-prev, .slick-next {
+    bottom: 0;
+    top: auto;
+    width: 85px;
+    border-radius: 42px;
+    border: 0;
+    &:hover {
+      background-color: #707070;
+      border: 0;
+      .slick-next:before, .slick-prev:before {
+        color: #fff;
+      }
+    }
+  }
+  .slick-next {
+    left: 95px;
+  }
+  @include media-breakpoint-up(lg) {
+    .slick-prev {
+      left: 30px;
+    }
+    .slick-next {
+      left: 125px;
+    }
+  }
+  .slick-next:before, .slick-prev:before {
+    color: theme-color("primary");
+  }
+
+  .slick-next:before {
+    content: "\e921";
+  }
+
+  .slick-prev:before {
+    content: "\e92f";
+  }
+  @include media-breakpoint-down(sm) {
+    .slick-dots {
+      margin: 20px 0 -20px;
+    }
+  }
+
+}
+@include media-breakpoint-down(sm) {
+  .js-services-tabs-carousel {
+    margin-bottom: 20px;
+  }
+}

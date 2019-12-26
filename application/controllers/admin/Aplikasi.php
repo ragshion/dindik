@@ -1,0 +1,89 @@
+<?php
+// defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Aplikasi extends CI_Controller {
+
+	public function __construct(){
+		parent::__construct();
+	}
+
+	public function index(){
+		$data['data'] = $this->db->order_by('tgl_input','asc')->get('aplikasi')->result_array();
+		$this->load->view('backend/template/header');
+		$this->load->view('backend/master/aplikasi',$data);
+		$this->load->view('backend/template/footer');
+	}
+
+	function c(){
+		echo $_SERVER['SERVER_NAME'];
+	}
+
+	function save(){
+		$data = $this->input->post();
+		$data['tgl_input'] = date('Y-m-d H:i:s');
+
+		$config['upload_path'] = './assets/images/aplikasi/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['file_name'] = uniqid().'.jpg';
+
+		$this->load->library('upload', $config);
+ 
+		if ( ! $this->upload->do_upload('foto')){
+			$error = array('error' => $this->upload->display_errors());
+			var_dump($error);
+			// $this->load->view('v_upload', $error);
+		}else{
+			$data['foto'] = $config['file_name'];
+			$this->session->set_flashdata('alert','<div class="alert alert-primary alert-dismissible fade show" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"><i class="far fa-trash"></i></span> </button> <strong>Berhasil!</strong> Data Aplikasi berhasil disimpan.</div>');
+			$this->db->insert('aplikasi',$data);
+			redirect('admin/aplikasi');
+		}
+	}
+
+	function hapus($id){
+		$data = $this->db->where('id',$id)->get('aplikasi')->row_array();
+		$this->db->where('id',$id)->delete('aplikasi');
+		unlink('./assets/images/aplikasi/'.$data['foto']);
+		redirect('admin/aplikasi');
+	}
+
+	function edit(){
+		$data = $this->db->where('id',$this->input->post('id'))->get('aplikasi')->row_array();
+		header('Content-Type: application/json');
+		echo json_encode($data);
+	}
+
+	function update(){
+		$data = $this->input->post();
+		$data['id'] = $this->input->post('xid');
+		unset($data['xid']);
+
+		if ($_FILES['foto']['size'] == 0 && $_FILES['foto']['error'] == 0) {
+			// echo 'kosong';
+		}else{
+			// echo 'ora koosng';
+
+			$config['upload_path'] = './assets/images/aplikasi/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$config['file_name'] = uniqid().'.jpg';
+
+			$this->load->library('upload', $config);
+	 
+			if ( ! $this->upload->do_upload('foto')){
+				$error = array('error' => $this->upload->display_errors());
+				var_dump($error);
+				// $this->load->view('v_upload', $error);
+			}else{
+				$data['foto'] = $config['file_name'];
+				$u = $this->db->where('id',$data['id'])->get('aplikasi')->row_array();
+				unlink('./assets/images/aplikasi/'.$u['foto']);	
+			}
+		}
+
+		$this->session->set_flashdata('alert','<div class="alert alert-secondary alert-dismissible fade show" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"><i class="fal fa-window-close"></i></span> </button> <strong>Berhasil!</strong> Data Aplikasi berhasil diperbarui.</div>');
+
+		$this->db->where('id',$data['id'])->update('aplikasi',$data);
+		redirect('admin/aplikasi');
+	}
+
+}
